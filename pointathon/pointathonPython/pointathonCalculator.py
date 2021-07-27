@@ -1,5 +1,8 @@
 import sys
 import os
+import json
+
+settings = {}
 
 # Gets the parameter if it exists. Otherwise return None
 # parameterToGet = parameter needed to be obtained.
@@ -9,6 +12,20 @@ def getParameter(parameterToGet):
         return sys.argv[parameterToGet]
     else:
         return None
+
+# Loads settings for the app.
+def loadSettings():
+    # get the current directory of this file. 
+    cwd = os.path.dirname(os.path.realpath(__file__))
+
+    # read current settings file
+    with open(cwd + '/appsettings.json', 'r') as f:
+        data = f.read()
+
+    f.close()
+
+    global settings
+    settings = json.loads(data)
 
 # Edits the points file to increase but the amount passed in.
 # increaseBy = points to increase by
@@ -31,12 +48,14 @@ def editFile(increaseBy):
 # Gets the multiplier of points by the tier at which the subs are at.
 # tier = the tier of the subs
 def getMultiplier(tier):
+    global settings
+
     if tier.lower() == "tier 1":
-        return 1
+        return int(settings["tier1Multiplier"])
     elif tier.lower() == "tier 2":
-        return 2
+        return int(settings["tier2Multiplier"])
     elif tier.lower() == "tier 3":
-        return 5
+        return int(settings["tier3Multiplier"])
 
     return 1
 
@@ -48,12 +67,14 @@ def getMultiplier(tier):
 # amount = the amount of the alert. (number of bits / subs)
 # tier = the tier of the subs
 def getPoints(alertType, amount, tier):
+    global settings
+
     # sub or gift subs
     if alertType == 1 or alertType == 2:
         return amount * getMultiplier(tier)
     # cheer
     elif alertType == 3:
-        return int(amount / 500)
+        return int(amount / int(settings["bitsPerPoint"]))
 
     # something went wrong so don't increase the count
     return 0
@@ -63,6 +84,8 @@ firstArg = int(getParameter(1))
 secondArg = int(getParameter(2))
 thirdArg = getParameter(3)
 
+# load settings
+loadSettings()
 # get the number of points
 pointsToAdd = getPoints(firstArg, secondArg, thirdArg)
 # edit the file being used to hold the number of points.
