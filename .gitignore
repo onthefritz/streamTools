@@ -1,2 +1,21 @@
-**/bin
-**/obj
+# dependencies
+/pointathon-settings/node_modules
+/pointathon-settings/.pnp
+/pointathon-settings/.pnp.js
+
+# testing
+/pointathon-settings/coverage
+
+# production
+/pointathon-settings/build
+
+# misc
+/pointathon-settings/.DS_Store
+/pointathon-settings/.env.local
+/pointathon-settings/.env.development.local
+/pointathon-settings/.env.test.local
+/pointathon-settings/.env.production.local
+
+/pointathon-settings/npm-debug.log*
+/pointathon-settings/yarn-debug.log*
+/pointathon-settings/yarn-error.log*
