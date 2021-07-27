@@ -1,21 +1,21 @@
 # dependencies
-/pointathon-settings/node_modules
-/pointathon-settings/.pnp
-/pointathon-settings/.pnp.js
+pointathon/pointathon-settings/node_modules
+pointathon/pointathon-settings/.pnp
+pointathon/pointathon-settings/.pnp.js
 
 # testing
-/pointathon-settings/coverage
+pointathon/pointathon-settings/coverage
 
 # production
-/pointathon-settings/build
+pointathon/pointathon-settings/build
 
 # misc
-/pointathon-settings/.DS_Store
-/pointathon-settings/.env.local
-/pointathon-settings/.env.development.local
-/pointathon-settings/.env.test.local
-/pointathon-settings/.env.production.local
+pointathon/pointathon-settings/.DS_Store
+pointathon/pointathon-settings/.env.local
+pointathon/pointathon-settings/.env.development.local
+pointathon/pointathon-settings/.env.test.local
+pointathon/pointathon-settings/.env.production.local
 
-/pointathon-settings/npm-debug.log*
-/pointathon-settings/yarn-debug.log*
-/pointathon-settings/yarn-error.log*
+pointathon/pointathon-settings/npm-debug.log*
+pointathon/pointathon-settings/yarn-debug.log*
+pointathon/pointathon-settings/yarn-error.log*
