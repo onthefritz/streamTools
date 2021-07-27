@@ -6,4 +6,4 @@ I have a couple of applications in here that help with some tasks that I do on s
 
 I created this for an Affiliate anniversary stream. I've seen people setup inventives based on any type of contribution so I made a tool that integrates with Lioranboard to help count points for me. 
 
-There are two types for this, you can either use a Windows specific one with an exe file or you can use a Python variant. For Windows users, if you want to use the Python one you will need to install Python 3.9. It's in the Windows Store so it's easy to get.
+For Windows users, you will need to install Python 3.9. It's in the Windows Store so it's easy to get. Here is a direct [link](https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7#activetab=pivot:overviewtab).
