@@ -13,6 +13,26 @@ def getParameter(parameterToGet):
     else:
         return None
 
+# Updates Multiplier setting for the app.
+def updateMultiplierSetting(multiplierValue):
+    # get the current directory of this file. 
+    cwd = os.path.dirname(os.path.realpath(__file__))
+
+    # read current settings file
+    with open(cwd + '/appsettings.json', 'r') as f:
+        data = f.read()
+
+    f.close()
+
+    current_settings = json.loads(data)
+    current_settings["multiplier"] = multiplierValue
+
+    # overwrite what is in the file with the new total
+    with open(cwd + '/appsettings.json', 'w') as f:
+        f.write(json.dumps(current_settings))
+
+    f.close()
+
 # Loads settings for the app.
 def loadSettings():
     # get the current directory of this file. 
@@ -71,10 +91,10 @@ def getPoints(alertType, amount, tier):
 
     # sub or gift subs
     if alertType == 1 or alertType == 2:
-        return amount * getMultiplier(tier)
+        return (amount * getMultiplier(tier)) * settings["multiplier"]
     # cheer
     elif alertType == 3:
-        return int(amount / int(settings["bitsPerPoint"]))
+        return int(amount / int(settings["bitsPerPoint"])) * settings["multiplier"]
 
     # something went wrong so don't increase the count
     return 0
@@ -84,9 +104,12 @@ firstArg = int(getParameter(1))
 secondArg = int(getParameter(2))
 thirdArg = getParameter(3)
 
-# load settings
-loadSettings()
-# get the number of points
-pointsToAdd = getPoints(firstArg, secondArg, thirdArg)
-# edit the file being used to hold the number of points.
-editFile(pointsToAdd)
+if firstArg == 0:
+    updateMultiplierSetting(secondArg)
+else:
+    # load settings
+    loadSettings()
+    # get the number of points
+    pointsToAdd = getPoints(firstArg, secondArg, thirdArg)
+    # edit the file being used to hold the number of points.
+    editFile(pointsToAdd)
